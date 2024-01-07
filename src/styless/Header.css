@@ -1,0 +1,35 @@
+/* Header.css */
+
+.header {
+    background-color: #3498db; /* Header background color */
+    color: #ffffff; /* Header text color */
+    padding: 20px; /* Padding to create some space around the content */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow for depth */
+  
+    /* Flexbox to center the content horizontally and vertically */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .logo {
+    font-size: 24px; /* Adjust the font size for the logo */
+    font-weight: bold; /* Make the logo text bold */
+  }
+  
+  .nav {
+    display: flex;
+    gap: 20px; /* Add space between navigation items */
+  }
+  
+  .nav a {
+    color: #ffffff; /* Navigation link color */
+    text-decoration: none; /* Remove underlines from links */
+    font-weight: bold; /* Make navigation links bold */
+    transition: color 0.3s ease; /* Smooth transition for color changes */
+  }
+  
+  .nav a:hover {
+    color: #ecf0f1; /* Change link color on hover */
+  }
+  
