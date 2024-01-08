@@ -10,32 +10,37 @@ import { DIGITAL_CLOCK_VIEW_HEIGHT } from '@mui/x-date-pickers/internals/constan
 import { useState, useEffect, } from 'react';
 import SeletedProduct from './SeletedProduct';
 import { arrayIncludes } from '@mui/x-date-pickers/internals/utils/utils';
+import { useLogin } from '../Context/LoginProvider';
 
 
 
 export default function ProductTable({ Products }) {
 
   const [selectedProductList, setSelectedProductList] = useState([]);
-
-  let result = window.localStorage.getItem("selectedItemLists")
-  const arr = JSON.parse(result);
-  console.log("my arr: ", arr);
+  const { selectedLists, setSelectedLists } = useLogin();
 
   const handleChange = (id, quantity) => {
-    console.log(selectedProductList);
     let temp = Array.from(selectedProductList.length ? selectedProductList : Products)
 
     const existingProduct = temp.find(
       (product) => product.ProductId === id
     );
 
+    console.log("existingProduct", existingProduct);
+
     if (existingProduct) {
       existingProduct.quantity = quantity;
+      existingProduct.MRP = existingProduct.MRP * quantity;
       setSelectedProductList(temp);
     }
-    window.localStorage.setItem("selectedItemLists", JSON.stringify(temp))
+    setSelectedLists((prev) => {
+      const updatedState = { ...prev, datas: temp };
+      window.localStorage.setItem("selectedItemLists", JSON.stringify(temp));
+      return updatedState;
+    });
+    // window.localStorage.setItem("selectedItemLists", JSON.stringify(temp))
   };
-  
+
 
   return (
     <div style={{ width: "800px", margin: "auto" }}>
@@ -48,9 +53,9 @@ export default function ProductTable({ Products }) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {arr.map((item) => (
+            {Products.map((item) => (
               <TableRow
-                key={item.id}
+                key={item.ProductId}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
