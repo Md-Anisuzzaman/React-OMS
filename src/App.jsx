@@ -15,6 +15,7 @@ import { useLogin } from "./Context/LoginProvider";
 import Customer from './pages/Customer';
 import OrderDetails from './pages/OrderDetails';
 import SeletedProduct from "./Component/SeletedProduct";
+import Check from "./pages/check";
 
 const App = () => {
 
@@ -43,6 +44,7 @@ const App = () => {
 
   return (
     <Router>
+      {/* <Home /> */}
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<Login />} />
