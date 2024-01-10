@@ -3,19 +3,23 @@ import React, { useEffect, useState } from "react";
 import { BASE_URL, PASSWORD, USERNAME, blackColor } from "./../../varible";
 import base64 from "base-64";
 import ProductTable from "../Component/ProductTable";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import SeletedProduct from './../Component/SeletedProduct';
 
 
 
 const OrderDetails = () => {
-
+  const location = useLocation();
+  const requestData = location.state?.requestData;
+  console.log("requestData",requestData);
 
   const [showProductData, setShowProductData] = useState(true);
   const [showOrderData, setShowOrderData] = useState(false);
   const [productData, setProductData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  
 
   // console.log({ productData });
 
@@ -40,9 +44,7 @@ const OrderDetails = () => {
           Authorization: authHeader,
         },
       });
-      const result = await response.json();
-      // console.log("jsonData",typeof(result));
-      // console.log({ result });
+      const result = await response.json();;
       setProductData(result)
       setIsLoading(false);
       // return jsonData;

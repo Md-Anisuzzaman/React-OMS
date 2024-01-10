@@ -10,12 +10,14 @@ const LoginProvider = ({ children }) => {
     // userDetails:null
   });
   const [selectedLists, setSelectedLists] = useState({
-    datas:JSON.parse(window.localStorage.getItem("selectedItemLists")) || ["Not Ordered Yet"]
+    datas: JSON.parse(window.localStorage.getItem("selectedItemLists")) || ["Not Ordered Yet"]
   })
+
+  const [creatInfo, SetCreateInfo] = useState()
 
 
   return (
-    <LoginContext.Provider value={{ isLoggedIn, setIsLoggedIn, selectedLists, setSelectedLists }}>
+    <LoginContext.Provider value={{ isLoggedIn, setIsLoggedIn, selectedLists, setSelectedLists, creatInfo, SetCreateInfo }}>
       {children}
     </LoginContext.Provider>
   );
